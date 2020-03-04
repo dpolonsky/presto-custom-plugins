@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.salesforce.plugins</groupId>
+    <artifactId>presto-custom-plugins</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>presto-custom-udf</module>
+        <module>presto-custom-auth</module>
+        <module>presto-custom-event-listener</module>
+        <module>presto-custom-access-control</module>
+    </modules>
+
+    <properties>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <presto.maven.plugin.version>9</presto.maven.plugin.version>
+        <!-- minimum maven version to build -->
+        <air.maven.version>3.2.3</air.maven.version>
+
+        <air.main.basedir>${project.basedir}</air.main.basedir>
+
+        <dep.packaging.version>0.163</dep.packaging.version>
+
+        <air.main.basedir>${project.basedir}</air.main.basedir>
+        <dep.guava.version>26.0-jre</dep.guava.version>
+        <dep.guice.version>4.2.2</dep.guice.version>
+        <dep.antlr.version>4.7.1</dep.antlr.version>
+        <dep.airlift.version>0.184</dep.airlift.version>
+        <dep.airlift.units.version>1.4</dep.airlift.units.version>
+        <dep.javax-inject.version>1</dep.javax-inject.version>
+        <dep.packaging.version>${dep.airlift.version}</dep.packaging.version>
+        <dep.slice.version>0.36</dep.slice.version>
+        <dep.aws-sdk.version>1.11.445</dep.aws-sdk.version>
+        <dep.okhttp.version>3.9.0</dep.okhttp.version>
+        <dep.jdbi3.version>3.4.0</dep.jdbi3.version>
+        <dep.drift.version>1.14</dep.drift.version>
+        <dep.joda.version>2.10</dep.joda.version>
+        <dep.tempto.version>164</dep.tempto.version>
+        <dep.testng.version>6.10</dep.testng.version>
+        <dep.assertj-core.version>3.8.0</dep.assertj-core.version>
+        <dep.logback.version>1.2.3</dep.logback.version>
+        <dep.jmxutils.version>1.21</dep.jmxutils.version>
+        <dep.gcs.version>1.9.10</dep.gcs.version>
+        <dep.jackson.version>2.9.8</dep.jackson.version>
+        <commons.lang.version>3.8.1</commons.lang.version>
+        <presto.version>324</presto.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.prestosql</groupId>
+                <artifactId>presto-spi</artifactId>
+                <version>${presto.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${dep.guava.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>log</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>slice</artifactId>
+                <version>${dep.slice.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>units</artifactId>
+                <version>${dep.airlift.units.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>configuration</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>testing</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>${dep.airlift.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${dep.jackson.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${dep.guice.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${dep.javax-inject.version}</version>
+            </dependency>
+
+
+            <!-- tests -->
+            <dependency>
+                <groupId>io.prestosql</groupId>
+                <artifactId>presto-spi</artifactId>
+                <version>${presto.version}</version>
+                <type>test-jar</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.prestosql</groupId>
+                <artifactId>presto-maven-plugin</artifactId>
+                <version>${presto.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <allowedProvidedDependencies>io.airlift:units</allowedProvidedDependencies>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
