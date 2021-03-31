@@ -28,7 +28,7 @@
         <dep.packaging.version>0.163</dep.packaging.version>
 
         <air.main.basedir>${project.basedir}</air.main.basedir>
-        <dep.guava.version>26.0-jre</dep.guava.version>
+        <dep.guava.version>29.0-jre</dep.guava.version>
         <dep.guice.version>4.2.2</dep.guice.version>
         <dep.antlr.version>4.7.1</dep.antlr.version>
         <dep.airlift.version>0.184</dep.airlift.version>
